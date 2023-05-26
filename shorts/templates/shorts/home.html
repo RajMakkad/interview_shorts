@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    {% if title %}
+        <title>Interview shorts - {{ title }}</title>
+    {% else %}
+        <title> Home </title>
+    {% endif %}
 </head>
 <body>
     <h1>Shorts Home.</h1>
+    {% for short in shorts %}
+        <h2>{{ short.name }}</h2>
+        <p>{{ short.time }}</p>
+        <p>{{ short.title }}</p>
+        <p>{{ short.exp }}</p>
+        <br>
+    {% endfor %}
 </body>
 </html>
