@@ -3,5 +3,5 @@ from . import views
 
 # path(endpoint/, function, path-name)
 urlpatterns = [
-    path('', views.about, name='about')
+    path('', views.about, name='about-home')
 ]
