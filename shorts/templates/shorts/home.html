@@ -5,11 +5,13 @@
         <article class="media content-section">
             <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="#">{{ short.name }}</a>
-                <small class="text-muted">{{ short.time }}</small>
+                <a class="mr-2" href="#">{{ short.author }}</a>
+                <small class="text-muted">{{ short.branch }},</small>
+                <small class="text-muted">{{ short.post_date }}</small>
             </div>
-            <h4><a class="article-title" href="#">{{ short.title }}</a></h4>
-            <p class="article-content">{{ short.exp }}</p>
+            <h5><a class="article-title" href="#">{{ short.title }}</a></h5>
+            <p class="article-content"> Experience - {{ short.experience }}</p>
+            <p class="article-content"> Difficulty - {{ short.difficulty }}</p>
             </div>
         </article>
         <!-- <h2>{{ short.name }}</h2>
