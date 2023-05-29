@@ -1,6 +1,5 @@
 {% extends 'shorts/base.html' %}
 {% block content %}
-    <!-- <h1>Shorts Home.</h1> -->
     {% for short in shorts %}
         <article class="media content-section">
             <div class="media-body">
@@ -14,10 +13,6 @@
             <p class="article-content"> Difficulty - {{ short.difficulty }}</p>
             </div>
         </article>
-        <!-- <h2>{{ short.name }}</h2>
-        <p>{{ short.time }}</p>
-        <p>{{ short.title }}</p>
-        <p>{{ short.exp }}</p> -->
     {% endfor %}
 {% endblock content %}
     

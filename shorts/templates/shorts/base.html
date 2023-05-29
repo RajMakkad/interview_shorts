@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Add Font Awesome CSS CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- custom css inside shorts app -->
     <link rel="stylesheet" href="{% static 'shorts/main.css' %}">
     {% if title %}
         <title>Interview shorts - {{ title }}</title>
     {% else %}
-        <title> Home </title>
+        <title> Interview shorts </title>
     {% endif %}
 </head>
 <body>
@@ -25,7 +27,6 @@
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="{% url 'shorts-home' %}">Shorts</a>
-                <!-- redirecting with help of url-tag -->
                 <a class="nav-item nav-link" href="{% url 'about-home' %}">About</a>
                 <a class="nav-item nav-link" href="/contact">Contact</a>
               </div>
@@ -34,8 +35,9 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 </form>
                 <a class="nav-item nav-link" href="/admin">Admin</a>
-                <a class="nav-item nav-link" href="#">Login</a>
-                <a class="nav-item nav-link" href="#">Register</a>
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <!-- redirecting with help of url-tag -->
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
               </div>
             </div>
           </div>
@@ -44,10 +46,17 @@
       
     <main role="main" class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-xl-12">
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif  %}
             {% block content %}{% endblock %}
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <div class="content-section">
               <h3>Our Sidebar</h3>
               <p class='text-muted'>You can put any information here you'd like.
@@ -59,7 +68,7 @@
                 </ul>
               </p>
             </div>
-          </div>
+          </div> -->
         </div>
       </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
