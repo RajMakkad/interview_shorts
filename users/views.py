@@ -42,7 +42,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, f'{username}  logged in.')
-            return redirect('home')
+            return redirect('shorts-home')
         else:
             messages.info(request, 'Invalid credentials')
             return redirect('login')

@@ -21,7 +21,7 @@ from users import views as user_view
 # path(endpoint/, function, path-name)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('shorts.urls'), name='home'),
+    path('', include('shorts.urls')),
     path('about/', include('about.urls')),
     path('user/register/', user_view.register, name='register'),
     path('user/login/', user_view.login, name='login')
