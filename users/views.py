@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -47,10 +47,14 @@ def login(request):
             messages.info(request, 'Invalid credentials')
             return redirect('login')
     else:
-        return render(request, 'login.html', {'title': 'Login'})
+        return render(request, 'users/login.html', {'title': 'Login'})
     
 def logout(request):
     auth.logout(request)
-    messages.info(request, 'logged out.')
-    return redirect('home')
+    messages.info(request, 'You have been logged out.')
+    return redirect('login')
 
+@login_required
+def profile(request):
+    username = request.user.username
+    return render(request, 'users/profile.html', {'title' : username})

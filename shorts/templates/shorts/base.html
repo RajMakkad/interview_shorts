@@ -28,16 +28,20 @@
               <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="{% url 'shorts-home' %}">Shorts</a>
                 <a class="nav-item nav-link" href="{% url 'about-home' %}">About</a>
-                <a class="nav-item nav-link" href="/contact">Contact</a>
+                <a class="nav-item nav-link" href="{% url 'about-contact' %}">Contact</a>
               </div>
               <div class="navbar-nav">
                 <form class="form-inline search-form">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 </form>
                 <a class="nav-item nav-link" href="/admin">Admin</a>
-                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                <!-- redirecting with help of url-tag -->
-                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                  <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                  <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                  <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                {% endif %}
               </div>
             </div>
           </div>
