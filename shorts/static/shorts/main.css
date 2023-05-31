@@ -73,6 +73,7 @@ body {
   }
   
   .account-img {
+    object-fit: cover;
     height: 125px;
     width: 125px;
     margin-right: 20px;
