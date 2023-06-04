@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 
 def register(request):
@@ -56,5 +57,30 @@ def logout(request):
 
 @login_required
 def profile(request):
-    username = request.user.username
-    return render(request, 'users/profile.html', {'title' : username})
+    if request.method == 'POST':
+        old_username = request.user.username
+        old_email = request.user.email
+        old_branch = request.user.profile.branch
+        username = request.POST['username']
+        email = request.POST['email']
+        branch = request.POST['branch']
+        if username == '' or username == ' ':
+            username = old_username
+        if username == '' or username == ' ':
+            email = old_email
+        if branch == '' or branch == ' ':
+            branch = old_branch
+        if old_username != username:  
+            if User.objects.filter(username=username).exists():
+                messages.info(request, 'Username already taken.')
+                return redirect('profile')
+        if old_email != email:
+            if User.objects.filter(email=email).exists():
+                messages.info(request, 'Email already taken.')
+                return redirect('profile')
+        User.objects.filter(username=old_username).update(username=username, email=email)
+        Profile.objects.filter(user=request.user).update(branch=branch)
+        return redirect('profile')
+    else:
+        username = request.user.username
+        return render(request, 'users/profile.html', {'title' : username})

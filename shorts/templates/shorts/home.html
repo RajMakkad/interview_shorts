@@ -2,16 +2,17 @@
 {% block content %}
     {% for short in shorts %}
         <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ short.author.profile.image.url }}" alt="Profile">
             <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="#">{{ short.author.username }}</a>
-                <small class="text-muted">{{ short.author.email }},</small>
-                <small class="text-muted">{{ short.post_date }}</small>
-            </div>
-            <h5><a class="article-title" href="#">{{ short.title }}</a></h5>
-            <p class="article-content" style="padding: 0; margin: 0;"> Branch - {{ short.branch }}</p>
-            <p class="article-content" style="padding: 0; margin: 0;"> Experience - {{ short.experience }}</p>
-            <p class="article-content" style="padding: 0; margin: 0;"> Difficulty - {{ short.difficulty }}</p>
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ short.author.username }}</a>
+                    <small class="text-muted">{{ short.author.email }},</small>
+                    <small class="text-muted">{{ short.post_date }}</small>
+                </div>
+                <h5><a class="article-title" href="#">{{ short.title }}</a></h5>
+                <p class="article-content" style="padding: 0; margin: 0;"> Branch - {{ short.branch }}</p>
+                <p class="article-content" style="padding: 0; margin: 0;"> Experience - {{ short.experience }}</p>
+                <p class="article-content" style="padding: 0; margin: 0;"> Difficulty - {{ short.difficulty }}</p>
             </div>
         </article>
     {% endfor %}
