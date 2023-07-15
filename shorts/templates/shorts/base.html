@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- custom css inside shorts app -->
     <link rel="stylesheet" href="{% static 'shorts/main.css' %}">
+    {% block style %}{% endblock %}
     {% if title %}
         <title>Interview shorts - {{ title }}</title>
     {% else %}
@@ -26,7 +27,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{% url 'shorts-home' %}">Shorts</a>
+                <a class="nav-item nav-link" href="{% url 'my_shorts' %}">Shorts</a>
                 <a class="nav-item nav-link" href="{% url 'about-home' %}">About</a>
                 <a class="nav-item nav-link" href="{% url 'about-contact' %}">Contact</a>
               </div>

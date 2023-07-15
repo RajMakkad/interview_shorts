@@ -64,7 +64,7 @@ def profile(request):
         username = request.POST['username']
         email = request.POST['email']
         branch = request.POST['branch']
-        if username == '' and email == '' and email == '':
+        if username == '' and email == '' and branch == '':
             messages.info(request, f'{old_username}, you left all the fields empty!')
         if username == '' or username == ' ':
             username = old_username

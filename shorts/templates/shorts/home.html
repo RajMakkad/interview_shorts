@@ -1,5 +1,13 @@
 {% extends 'shorts/base.html' %}
+{% block style %}
+    <style>
+        button:hover {box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);}
+    </style>
+{% endblock style %}
 {% block content %}
+    <div style=" display: flex; justify-content: center;">
+        <h2 style="font-family: 'Avanta Garde', Tahoma, Geneva, Verdana, sans-serif;">{{ message }}</h2>
+    </div>
     {% for short in shorts %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ short.author.profile.image.url }}" alt="Profile">
@@ -9,12 +17,12 @@
                     <small class="text-muted">{{ short.author.email }},</small>
                     <small class="text-muted">{{ short.post_date }}</small>
                 </div>
-                <h5><a class="article-title" href="#">{{ short.title }}</a></h5>
-                <p class="article-content" style="padding: 0; margin: 0;"> Branch - {{ short.branch }}</p>
-                <p class="article-content" style="padding: 0; margin: 0;"> Experience - {{ short.experience }}</p>
+                <h5><a class="article-title" href="{% url 'detailedShorts' short.id %}">{{ short.title }}</a></h5>
                 <p class="article-content" style="padding: 0; margin: 0;"> Difficulty - {{ short.difficulty }}</p>
             </div>
+            
         </article>
     {% endfor %}
+    <button type="submit" class="btn btn-lg"style="background-color: #024476; color: white; border-radius: 4px; padding: 10px 20px;transition: box-shadow 0.3s;"><a href="{% url 'create_shorts' %}" style="text-decoration: none; color: #cbd5db;">Experience</a></button>
 {% endblock content %}
     
