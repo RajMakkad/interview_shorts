@@ -23,6 +23,8 @@
             
         </article>
     {% endfor %}
-    <button type="submit" class="btn btn-lg"style="background-color: #024476; color: white; border-radius: 4px; padding: 10px 20px;transition: box-shadow 0.3s;"><a href="{% url 'create_shorts' %}" style="text-decoration: none; color: #cbd5db;">Experience</a></button>
+    {% if experience == True %}
+        <button type="submit" class="btn btn-lg"style="background-color: #024476; color: white; border-radius: 4px; padding: 10px 20px;transition: box-shadow 0.3s;"><a href="{% url 'create_shorts' %}" style="text-decoration: none; color: #cbd5db;">Experience</a></button>
+    {% endif %}
 {% endblock content %}
     

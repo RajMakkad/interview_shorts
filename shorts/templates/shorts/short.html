@@ -19,6 +19,11 @@
       th, td {border: none;}
       th {background-color: #f2f2f2;}
     }
+    button:hover {box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);}
+    button {
+      margin: 20px 15px 0 0;
+      font-family: Times, serif;
+    }
   </style>
 {% endblock style %}
 
@@ -28,7 +33,7 @@
     <div class="media-body">
         <div class="article-metadata">
             <h5 class="mr-2" href="#">{{ short.author.username }}</h5>
-            <small class="text-muted">{{ short.branch }},</small>
+            <small class="text-muted">{{ short.author.profile.branch }},</small>
             <small class="text-muted">{{ short.author.email }},</small>
             <small class="text-muted">{{ short.post_date }}</small>
         </div>
@@ -56,6 +61,11 @@
                 </tr>
             </tbody>
         </table>
+
+        {% if short.author == user %}
+        <button type="submit" class="btn btn-lg" style="background-color: #024476; color: white; border-radius: 4px; padding: 4px 15px;transition: box-shadow 0.3s;"><a href="{% url 'update_shorts' short.id %}" style="text-decoration: none; color: #cbd5db;">Update</a></button>
+        <button type="submit" class="btn btn-lg" style="background-color: #024476; color: white; border-radius: 4px; padding: 4px 15px;transition: box-shadow 0.3s;"><a href="{% url 'delete_shorts' short.id %}" style="text-decoration: none; color: #cbd5db;">Delete</a></button>
+        {% endif %}
     </div>
 </article>
 {% endblock content %}

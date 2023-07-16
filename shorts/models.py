@@ -9,7 +9,6 @@ class Short(models.Model):
     experience = models.TextField()
     post_date = models.DateTimeField(default=timezone.now)
     difficulty = models.CharField(max_length=100)
-    branch = models.CharField(max_length=100)
     ctc = models.TextField(default='50k')
     offer = models.CharField(max_length=100, default='Accepted')
     

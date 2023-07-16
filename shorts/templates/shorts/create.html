@@ -1,10 +1,114 @@
 {% extends 'shorts/base.html' %}
 {% block style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
 
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 55px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-container label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container textarea,
+    .form-container select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .form-container textarea {
+        height: 140px;
+    }
+
+    .form-container select {
+        height: 40px;
+    }
+
+    .form-container button[type="submit"],
+    .form-container button[type="button"] {
+        background-color: #0f65ab;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        float: left;
+        margin: -8px 15px 0 0;
+    }
+
+    .form-container button[type="submit"]:hover,
+    .form-container button[type="button"]:hover {
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4)
+    }
+</style>
 {% endblock style %}
 
 {% block content %}
-<h1>
-    hello
-</h1>
+<div class="form-container">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ data.title }}" required>
+
+        <label for="ctc">CTC:</label>
+        <input type="text" id="ctc" name="ctc" value="{{ data.ctc }}" required>
+
+        <label for="difficulty">Difficulty:</label>
+        <select id="difficulty" name="difficulty">
+            <option value="Easy">Easy</option>
+            <option value="Easy to Medium">Easy to Medium</option>
+            <option value="Medium">Medium</option>
+            <option value="Medium to Hard">Medium to Hard</option>
+            <option value="Hard">Hard</option>
+        </select>
+
+        <label for="offer">Offer:</label>
+        <select id="offer" name="offer">
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+            <option value="N/A">N/A</option>
+        </select>
+
+        <label for="experience">Experience:</label>
+        <textarea id="experience" name="experience" required>{{ data.experience }}</textarea>
+
+        <button type="submit">Submit</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+</div>
+
+<script>
+    function clearForm() {
+        document.getElementById("title").value = "";
+        document.getElementById("ctc").value = "";
+        document.getElementById("difficulty").selectedIndex = 0;
+        document.getElementById("offer").selectedIndex = 0;
+        document.getElementById("experience").value = "";
+    }
+</script>
 {% endblock content %}
